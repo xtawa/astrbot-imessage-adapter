@@ -1,0 +1,44 @@
+name: Validate adapter
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        astrbot: [v4.28.2, v4.29.0-beta.1]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: sidecar/package-lock.json
+      - uses: astral-sh/setup-uv@v6
+      - name: Install AstrBot test runtime
+        shell: bash
+        run: |
+          git clone --depth 1 --branch '${{ matrix.astrbot }}' https://github.com/AstrBotDevs/AstrBot.git "$RUNNER_TEMP/AstrBot"
+          uv pip install --system -r "$RUNNER_TEMP/AstrBot/pyproject.toml"
+          uv pip install --system -r requirements.txt pytest pytest-asyncio ruff
+      - name: Python integration tests
+        shell: bash
+        run: ASTRBOT_SOURCE="$RUNNER_TEMP/AstrBot" python -m pytest -q
+      - name: Python lint
+        run: |
+          ruff check .
+          ruff format --check .
+      - name: Photon contract tests
+        working-directory: sidecar
+        run: |
+          npm ci --no-audit --no-fund
+          npm test

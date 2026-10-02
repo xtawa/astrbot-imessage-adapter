@@ -1,0 +1,7 @@
+name: astrbot_imessage_adapter
+display_name: iMessage (Photon)
+desc: 使用 Photon Spectrum 为 AstrBot 提供 iMessage 私聊、群聊与多媒体消息平台。
+version: v1.2.0
+author: xtawa
+repo: https://github.com/xtawa/astrbot-imessage-adapter
+astrbot_version: ">=4.28.2"

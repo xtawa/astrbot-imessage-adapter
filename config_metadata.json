@@ -1,0 +1,22 @@
+{
+  "project_id": { "description": "Photon Project ID", "type": "string", "hint": "从 Photon 控制台获取；留空时读取 PHOTON_PROJECT_ID。", "show_key": true },
+  "project_secret": { "description": "Photon Project Secret", "type": "string", "hint": "从 Photon 控制台获取；留空时读取 PHOTON_PROJECT_SECRET。", "secret": true, "show_key": true },
+  "bot_number": { "description": "机器人号码", "type": "string", "hint": "Photon 分配的号码，使用 E.164 格式，例如 +15551234567。共享线路请填写；不是你自己的发送号码。" },
+  "node_path": { "description": "Node.js 可执行文件", "type": "string", "hint": "Node.js 22+，默认 node，可填写绝对路径。" },
+  "auto_install": { "description": "自动安装 Photon 桥接依赖", "type": "bool", "hint": "首次启动执行 npm ci 和 TypeScript 构建，需要 npm 与网络；也可关闭并手动安装。" },
+  "mark_read": { "description": "自动发送已读回执", "type": "bool", "hint": "成功提交入站消息后标记整个聊天为已读。失败不阻止回复。" },
+  "typing_indicator": { "description": "输入中状态", "type": "bool", "hint": "在 AstrBot 生成回复时显示输入中状态。" },
+  "reply_to_message": { "description": "默认引用回复", "type": "bool", "hint": "默认使用原生线程回复入站消息；Reply 组件始终优先。" },
+  "allow_groups": { "description": "启用群聊", "type": "bool" },
+  "allowed_senders": { "description": "发送者白名单", "type": "list", "hint": "留空允许所有发送者；填写完整号码或邮箱。" },
+  "allowed_chats": { "description": "聊天白名单", "type": "list", "hint": "留空允许所有聊天；填写 Photon 原始 chat GUID，非编码后的会话 ID。" },
+  "receive_reactions": { "description": "将 Tapback 作为入站消息", "type": "bool", "hint": "默认关闭，避免表情回应反复唤醒机器人。" },
+  "markdown": { "description": "发送原生格式文本", "type": "bool", "hint": "使用 Photon Markdown 渲染；消息链 use_markdown_ 可覆盖。" },
+  "link_preview": { "description": "纯链接消息生成预览", "type": "bool" },
+  "max_text_length": { "description": "每段文本字符上限", "type": "int", "hint": "100–20000，默认 4000，优先在换行处分段。" },
+  "max_attachment_mb": { "description": "单个附件上限 MB", "type": "int", "hint": "1–100，默认 20，发送与接收均限制。" },
+  "media_retention_hours": { "description": "附件缓存保留小时数", "type": "int", "hint": "1–720，默认 24；每 5 分钟清理过期附件。" },
+  "media_cache_mb": { "description": "附件缓存容量 MB", "type": "int", "hint": "20–4096，默认 512；满额时拒绝新附件。" },
+  "rpc_timeout": { "description": "操作超时秒数", "type": "int", "hint": "5–300，默认 60；超时不自动重发。" },
+  "startup_timeout": { "description": "Photon 连接超时秒数", "type": "int", "hint": "10–600，默认 120。" }
+}

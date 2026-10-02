@@ -1,0 +1,21 @@
+{
+  "name": "astrbot-photon-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test dist/*.test.js"
+  },
+  "dependencies": {
+    "@spectrum-ts/core": "12.10.1",
+    "@spectrum-ts/imessage": "12.10.1",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.15",
+    "typescript": "5.9.3"
+  }
+}
