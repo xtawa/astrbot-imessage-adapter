@@ -4,7 +4,7 @@ import json
 from contextlib import suppress
 from pathlib import Path
 
-from astrbot import logger
+from astrbot.api import logger
 from astrbot.api.event import MessageChain
 from astrbot.api.platform import Platform, PlatformMetadata, register_platform_adapter
 from astrbot.core.platform.message_session import MessageSession

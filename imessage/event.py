@@ -1,7 +1,7 @@
 from collections.abc import AsyncGenerator
 from contextlib import suppress
 
-from astrbot import logger
+from astrbot.api import logger
 from astrbot.api.event import AstrMessageEvent, MessageChain
 from astrbot.api.platform import Group, MessageMember
 

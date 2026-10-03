@@ -8,7 +8,7 @@ from collections.abc import Awaitable, Callable
 from contextlib import suppress
 from pathlib import Path
 
-from astrbot import logger
+from astrbot.api import logger
 from filelock import AsyncFileLock
 
 from .config import Config
